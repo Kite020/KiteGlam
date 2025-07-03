@@ -31,31 +31,31 @@
 | **Git + GitHub** | Version control & collaboration   |
 
 ---
+--- 
 
-## 🚀 Getting Started
 
-### 1️⃣ Clone the Repository
+1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/Kite020/KiteGlam.git
 cd KiteGlam
+
 2️⃣ Install Dependencies
-bash
-Copy code
+
 npm install
+
 3️⃣ Start the Development Server
-bash
-Copy code
+
 npm start
+
 🔗 Visit: http://localhost:3000
 
 🔐 Firebase Setup (Authentication)
+
 Create a Firebase project at https://firebase.google.com
 
 Create a .env file in your project root with the following content:
 
-env
-Copy code
 REACT_APP_FIREBASE_API_KEY=your_api_key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
 REACT_APP_FIREBASE_PROJECT_ID=your_project_id
@@ -65,8 +65,7 @@ REACT_APP_FIREBASE_APP_ID=your_app_id
 ✅ Don't forget to add .env to your .gitignore file!
 
 🧾 Project Structure
-pgsql
-Copy code
+
 KiteGlam/
 ├── public/
 ├── src/
@@ -77,9 +76,9 @@ KiteGlam/
 ├── .gitignore
 ├── package.json
 └── README.md
+
 👩‍💻 Author
 Ankita Dash
-🔗 GitHub Profile
 
 📄 License
 This project is licensed under the MIT License.

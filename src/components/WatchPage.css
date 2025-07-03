@@ -1,0 +1,140 @@
+.watch-page {
+    background: linear-gradient(to bottom, lavender, #fff0f5);
+    padding: 2rem 1rem;
+    min-height: 100vh;
+}
+
+.watch-hero {
+    max-width: 1000px;
+    margin: auto;
+    padding: 2rem;
+    background: linear-gradient(to right, #C89DD8, #ffeaf4);
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(255, 200, 220, 0.3);
+}
+
+.watch-hero h2 {
+    font-weight: bold;
+    color: #d10068;
+}
+
+.watch-header {
+    margin-top: 3rem;
+}
+
+.section-title {
+    color: #d10068;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.filters-sort {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.filters button {
+    background: #fff;
+    border: 1px solid #ffb6c1;
+    color: #d10068;
+    margin-right: 0.5rem;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+}
+
+.filters button.active {
+    background-color: #d10068;
+    color: white;
+    border-color: #d10068;
+}
+
+.sort select {
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ddd;
+    background: #fff0f5;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    /* ✅ Center the grid items */
+    max-width: 1000px;
+    /* ✅ Limit total width */
+    margin: 2rem auto;
+    /* ✅ Center the grid itself */
+}
+
+/* ✅ Consistent product card sizing */
+.product-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+    height: 320px;
+    /* 🔒 Fixed height for card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+}
+
+/* ✅ Keep image height consistent */
+.product-card img {
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+/* ✅ Name and price spacing */
+.product-card h5 {
+    font-size: 1rem;
+    height: 40px;
+    /* Same height for all names */
+    overflow: hidden;
+}
+
+.product-card p {
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+/* ✅ Wishlist position stable */
+.wishlist {
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+    font-size: 1.2rem;
+    color: #999;
+    cursor: pointer;
+}
+
+.add-to-cart-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #c2185b;
+}

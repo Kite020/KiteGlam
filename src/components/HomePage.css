@@ -1,0 +1,62 @@
+/* ✅ Outer wrapper for homepage */
+.homepage-wrapper {
+    background-color: lavender;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* ✅ Section containing all banners */
+.banners {
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+/* ✅ Ensure Link wrappers do not affect image layout */
+.banner-link {
+    display: block;
+    width: 90%;
+    max-width: 1000px;
+}
+
+/* ✅ Image sizing for consistency */
+.banner-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: block;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* ✅ Hover zoom effect */
+.banner-image:hover {
+    transform: scale(1.02);
+}
+
+/* ✅ Mobile responsiveness */
+@media (max-width: 768px) {
+    .banner-image {
+        height: 200px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    .fs-5 {
+        font-size: 1rem !important;
+    }
+
+    .hero-container p {
+        padding: 0 1rem;
+    }
+}

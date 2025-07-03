@@ -1,0 +1,16 @@
+.nav-link-custom {
+    color: #333 !important;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-link-custom:hover {
+    color: #dc3545 !important;
+    /* red on hover */
+}
+
+.nav-link-custom.active {
+    color: #dc3545 !important;
+    /* red when active */
+    font-weight: 600;
+}

@@ -1,0 +1,10 @@
+.hero-container {
+    background: linear-gradient(to bottom, #C89DD8, #fff);
+    border-radius: 12px;
+    margin: 2rem auto;
+    padding: 2rem 1.5rem;
+    max-width: 1000px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(255, 200, 220, 0.4);
+    text-align: center;
+}

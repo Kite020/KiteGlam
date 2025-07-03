@@ -31,21 +31,19 @@
 | **Git + GitHub** | Version control & collaboration   |
 
 
+🚀 Getting Started
 1️⃣ Clone the Repository
-
-```bash
+bash
 git clone https://github.com/Kite020/KiteGlam.git
 cd KiteGlam
-
 2️⃣ Install Dependencies
-
+bash
 npm install
-
 3️⃣ Start the Development Server
-
+bash
 npm start
-
 🔗 Visit: http://localhost:3000
+
 
 🔐 Firebase Setup (Authentication)
 

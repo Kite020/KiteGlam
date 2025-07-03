@@ -30,8 +30,8 @@
 | **CSS**          | Custom styling                    |
 | **Git + GitHub** | Version control & collaboration   |
 
+--- 
 
-🚀 Getting Started
 1️⃣ Clone the Repository
 bash
 git clone https://github.com/Kite020/KiteGlam.git

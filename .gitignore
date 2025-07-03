@@ -1,15 +1,6 @@
-# ✅ Don't track dependencies or cache
-node_modules/
-.cache/
-dist/
-build/
-
-# ✅ Don't track environment secrets
+node_modules
+.cache
+dist
+build
 .env
-
-# ✅ Ignore log files
-*.log
-npm-debug.log*
-
-# ✅ Optional: macOS and system files
 .DS_Store

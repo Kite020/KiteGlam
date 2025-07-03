@@ -30,8 +30,6 @@ KiteGlam is a sleek, modern, and fully responsive fashion e-commerce web app bui
 
 ---
 
-## 🚀 Getting Started
-
 ### 1️⃣ Clone the Repository
 
 ```bash

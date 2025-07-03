@@ -30,9 +30,6 @@
 | **CSS**          | Custom styling                    |
 | **Git + GitHub** | Version control & collaboration   |
 
----
---- 
-
 
 1️⃣ Clone the Repository
 

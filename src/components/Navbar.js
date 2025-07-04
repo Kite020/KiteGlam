@@ -38,7 +38,7 @@ const NavbarComponent = ({ logoWidth = 80 }) => {
 
           {/* Right: Icons */}
           <Nav className="gap-3 text-center mt-3 mt-lg-0">
-            <Nav.Link as={NavLink} to="/account" className="nav-link-custom"><FaUser /></Nav.Link>
+            <Nav.Link as={NavLink} to="/profile" className="nav-link-custom"><FaUser /></Nav.Link>
             <Nav.Link as={NavLink} to="/wishlist" className="nav-link-custom"><FaHeart /></Nav.Link>
             <Nav.Link as={NavLink} to="/cart" className="nav-link-custom"><FaShoppingCart /></Nav.Link>
           </Nav>

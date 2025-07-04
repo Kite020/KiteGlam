@@ -61,18 +61,19 @@ const BagPage = ({ wishlist, setWishlist, cart, setCart}) => {
 
       {/* Hero Section */}
       <div className="bag-hero">
-        <h2>💃 Welcome to Grace & Glam 💃</h2>
-            <p>
-            Step into the world of <strong>elegance 👠</strong>, <strong>confidence 💄</strong>, and <strong>radiance 👑</strong>.
-            <br />
-            Your beauty and style journey begins here ✨
-            </p>
+        <h2>👜 Welcome to Luxe & Carry 👜</h2>
+        <p>
+          Step into the world of <strong>fashion 🎀</strong>, <strong>function 🧳</strong>, and <strong>finesse 💼</strong>.
+          <br />
+          Carry confidence — wherever you go ✨
+        </p>
+
 
       </div>
 
       {/* Filters and Sort */}
       <div className="bag-header container">
-        <h3 className="section-title">Bold & Dapper</h3>
+        <h3 className="section-title">Luxe & Carry</h3>
         <div className="filters-sort">
           <div className="filters">
             {['All', 'Tote Bags', 'Clutches', 'Duffel Bags', 'Hand Bags', 'Purses', 'Backpacks'].map((cat) => (

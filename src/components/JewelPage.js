@@ -72,18 +72,19 @@ const JewelPage = ({ wishlist, setWishlist, cart, setCart}) => {
 
       {/* Hero Section */}
       <div className="jewel-hero">
-        <h2>🕴️ Welcome to Bold & Dapper 🕴️</h2>
+        <h2>💎 Welcome to Glitz & Grace 💎</h2>
         <p>
-        Step into the world of <strong>style 👔</strong>, <strong>confidence 💼</strong>, and <strong>charisma 🕶️</strong>.
-        <br />
-        Your fashion evolution starts here 🔥
+          Step into the world of <strong>elegance ✨</strong>, <strong>sparkle 💍</strong>, and <strong>timeless beauty 👑</strong>.
+          <br />
+          Your jewelry journey begins here ✨
         </p>
+
 
       </div>
 
       {/* Filters and Sort */}
       <div className="jewel-header container">
-        <h3 className="section-title">Bold & Dapper</h3>
+        <h3 className="section-title">Glitz & Grace</h3>
         <div className="filters-sort">
           <div className="filters">
             {['All', 'Pendants', 'Ear Rings', 'Rings', 'Necklaces', 'Bracelets', 'Nose Rings', 'Bangles', 'Anklets'].map((cat) => (

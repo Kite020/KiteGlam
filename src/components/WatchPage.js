@@ -63,18 +63,19 @@ const WatchPage = ({ wishlist, setWishlist, cart, setCart}) => {
 
       {/* Hero Section */}
       <div className="watch-hero">
-        <h2>💃 Welcome to Grace & Glam 💃</h2>
-            <p>
-            Step into the world of <strong>elegance 👠</strong>, <strong>confidence 💄</strong>, and <strong>radiance 👑</strong>.
-            <br />
-            Your beauty and style journey begins here ✨
-            </p>
+        <h2>⌚ Welcome to Timeless & True ⌚</h2>
+        <p>
+          Step into the world of <strong>grace 🕊️</strong>, <strong>precision ⏱️</strong>, and <strong>style ⌚</strong>.
+          <br />
+          Every moment counts — make yours stunning ✨
+        </p>
+
 
       </div>
 
       {/* Filters and Sort */}
       <div className="watch-header container">
-        <h3 className="section-title">Bold & Dapper</h3>
+        <h3 className="section-title">Timeless & True</h3>
         <div className="filters-sort">
           <div className="filters">
             {['All', 'Fastrack', 'Titan', 'Rolex', 'Casio', 'Timex', 'Sonata', 'Fossil'].map((cat) => (

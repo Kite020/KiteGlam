@@ -67,18 +67,19 @@ const AccessPage = ({ wishlist, setWishlist, cart, setCart}) => {
 
       {/* Hero Section */}
       <div className="access-hero">
-        <h2>💃 Welcome to Grace & Glam 💃</h2>
-            <p>
-            Step into the world of <strong>elegance 👠</strong>, <strong>confidence 💄</strong>, and <strong>radiance 👑</strong>.
-            <br />
-            Your beauty and style journey begins here ✨
-            </p>
+        <h2>🎀 Welcome to Spark & Style 🎀</h2>
+        <p>
+          Step into the world of <strong>charm 🌟</strong>, <strong>details 💫</strong>, and <strong>personality 🎯</strong>.
+          <br />
+          The perfect finishing touch starts here ✨
+        </p>
+
 
       </div>
 
       {/* Filters and Sort */}
       <div className="access-header container">
-        <h3 className="section-title">Bold & Dapper</h3>
+        <h3 className="section-title">Spark & Style</h3>
         <div className="filters-sort">
           <div className="filters">
             {['All', 'Hats', 'Belts', 'Perfumes', 'Sunglasses', 'Scrunchies', 'Hair Clips', 'Headbands', 'Clutchers', 'Socks', 'Hankies'].map((cat) => (

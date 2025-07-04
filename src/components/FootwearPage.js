@@ -63,18 +63,19 @@ const WomenPage = ({ wishlist, setWishlist, cart, setCart}) => {
 
       {/* Hero Section */}
       <div className="women-hero">
-        <h2>💃 Welcome to Grace & Glam 💃</h2>
-            <p>
-            Step into the world of <strong>elegance 👠</strong>, <strong>confidence 💄</strong>, and <strong>radiance 👑</strong>.
-            <br />
-            Your beauty and style journey begins here ✨
-            </p>
+        <h2>👠 Welcome to Sole & Chic 👠</h2>
+        <p>
+          Step into the world of <strong>style 👡</strong>, <strong>comfort 🥿</strong>, and <strong>confidence 💃</strong>.
+          <br />
+          Your perfect pair awaits you ✨
+        </p>
+
 
       </div>
 
       {/* Filters and Sort */}
       <div className="women-header container">
-        <h3 className="section-title">Bold & Dapper</h3>
+        <h3 className="section-title">Sole & Chic</h3>
         <div className="filters-sort">
           <div className="filters">
             {['All', 'Sneakers', 'Sandals', 'Crocs', 'Heels', 'Boots', 'Flats', 'Slippers'].map((cat) => (

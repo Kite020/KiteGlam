@@ -111,3 +111,16 @@
 .delete-btn:hover {
     color: darkred;
 }
+.order-history {
+    margin-top: 20px;
+}
+
+.order-list {
+    list-style: none;
+    padding: 0;
+}
+
+.order-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}

@@ -43,11 +43,11 @@ const LoginPage = () => {
           <label>
             <input type="checkbox" /> Remember me
           </label>
-          <Link to="/forgot">Forgot Password?</Link>
+          <Link to="/forgot-password">Forgot Password?</Link>
         </div>
         <button type="submit">Login</button>
         <p>
-          Don’t have an account? <Link to="/signup">Sign up</Link>
+          Dont have an account? <Link to="/signup">Sign up</Link>
         </p>
       </form>
     </div>

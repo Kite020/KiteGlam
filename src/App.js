@@ -6,6 +6,7 @@ import { auth } from './components/Firebase';
 import './App.css';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
+import ForgotPasswordPage from './components/ForgotPasswordPage'; // Import the Forgot Password component
 import HomePage from './components/HomePage';
 import BeautyPage from './components/BeautyPage';
 import JewelPage from './components/JewelPage';
@@ -18,6 +19,7 @@ import WishlistPage from './components/WishlistPage';
 import ShoppingCart from './components/ShoppingCart';
 import NavbarComponent from './components/Navbar';
 import ProfilePage from './components/ProfilePage';
+import EditProfilePage from './components/EditProfilePage'; // Import the new EditProfilePage component
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -58,6 +60,7 @@ function App() {
           {/* 🔐 Auth Pages */}
           <Route path="/login" element={!user ? <LoginPage /> : <Navigate to="/" />} />
           <Route path="/signup" element={!user ? <SignupPage /> : <Navigate to="/" />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} /> {/* New Forgot Password Route */}
 
           {/* 🛡️ Protected Routes */}
           <Route path="/*" element={<PrivateRoute />}>
@@ -72,6 +75,7 @@ function App() {
             <Route path="accessories" element={<AccessoriesPage wishlist={wishlist} setWishlist={setWishlist} cart={cart} setCart={setCart} />} />
             <Route path="cart" element={<ShoppingCart cart={cart} setCart={setCart} />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="edit-profile" element={<EditProfilePage />} /> {/* New Edit Profile Route */}
           </Route>
 
         </Routes>

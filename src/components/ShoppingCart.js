@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ShoppingCart.css';
+import { db, auth } from './Firebase';
+import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
 const extractPrice = (priceStr) => parseInt(priceStr.replace(/[₹,]/g, ''));
 
 const ShoppingCart = ({ cart, setCart }) => {
-  const [purchaseSuccess, setPurchaseSuccess] = React.useState(false);
+  const [purchaseSuccess, setPurchaseSuccess] = useState(false);
   const totalPrice = cart.reduce((sum, item) => sum + extractPrice(item.price), 0);
-  const handlePurchase = () => {
-    setPurchaseSuccess(true);
-    setTimeout(() => {
-      setPurchaseSuccess(false);
-      setCart([]);
-    }, 2000);
+
+  const handlePurchase = async () => {
+    const user = auth.currentUser;
+    if (!user || cart.length === 0) return;
+
+    try {
+      await addDoc(collection(db, 'orders'), {
+        userId: user.uid,
+        items: cart.map(({ id, name, price }) => ({ id, name, price })),
+        createdAt: Timestamp.now()
+      });
+
+      setPurchaseSuccess(true);
+      setTimeout(() => {
+        setPurchaseSuccess(false);
+        setCart([]);
+      }, 2000);
+    } catch (error) {
+      console.error('Error saving order:', error);
+      alert('Purchase failed. Please try again.');
+    }
   };
+
   return (
     <div className="shopping-cart">
       <div className="shopping-hero">
@@ -55,5 +73,3 @@ const ShoppingCart = ({ cart, setCart }) => {
 };
 
 export default ShoppingCart;
-
-      

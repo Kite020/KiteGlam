@@ -1,6 +1,6 @@
 # 💄 KiteGlam – Your Fashion & Beauty Destination
 
-**KiteGlam** is a sleek, modern, and fully responsive fashion e-commerce web app built for **female users** to explore their personal style. Whether you're shopping for trendy outfits, luxury skincare, or glamorous makeup, KiteGlam makes your fashion journey effortless and stylish.
+**KiteGlam** is a sleek, modern, and fully responsive fashion e-commerce web app built for **female users** to explore their personal style. Whether you're shopping for trendy outfits, luxury skincare, or glamorous styles, KiteGlam makes your fashion journey effortless and stylish.
 
 ---
 
@@ -36,35 +36,45 @@
 
 ## 1️⃣ Clone The Repository
 
+```
 git clone https://github.com/Kite020/KiteGlam.git
 cd KiteGlam
+```
 
 ## 2️⃣ Install Dependencies
 
+```
 npm install
+```
 
 ## 3️⃣ Start The Development Server
 
+```
 npm start
+```
 
-🔗 Visit: http://localhost:3000
+Visit: http://localhost:3000
 
 ## 🔐 Firebase Setup(Authentication)
 
 -Create a Firebase project at https://firebase.google.com
+
 -Create a .env file in your project root with the following content:
 
+```
 REACT_APP_FIREBASE_API_KEY=your_api_key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
 REACT_APP_FIREBASE_PROJECT_ID=your_project_id
 REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 REACT_APP_FIREBASE_APP_ID=your_app_id
+```
 
 -Don't forget to add .env to your .gitignore file!
 
 ### 🧾 Project Structure
 
+```
 KiteGlam/
 ├── public/
 ├── src/
@@ -75,6 +85,8 @@ KiteGlam/
 ├── .gitignore
 ├── package.json
 └── README.md
+```
+
 
 ### 👩‍💻 Author
 

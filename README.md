@@ -7,6 +7,13 @@ The project was designed to simulate a real-world ecommerce platform with scalab
 
 ---
 
+# 🌐 Live Demo
+
+🚀 Deployed Application:  
+```
+https://kite-glam-02-380lg8mce-kite020s-projects.vercel.app/login
+```
+
 # 🚀 Features
 
 ## 👤 User Features

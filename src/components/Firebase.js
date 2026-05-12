@@ -4,13 +4,24 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCLYO1BUpdArMNpZTA0bGRDW9HNVQzdhow",
-  authDomain: "kiteglam-cc70e.firebaseapp.com",
-  projectId: "kiteglam-cc70e",
-  storageBucket: "kiteglam-cc70e.appspot.com",
-  messagingSenderId: "371888440840",
-  appId: "1:371888440840:web:4f417c34c5c7902eb6f3bd",
-  measurementId: "G-KSJM53G1JH"
+
+  apiKey:
+    process.env.REACT_APP_FIREBASE_API_KEY,
+
+  authDomain:
+    process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+
+  projectId:
+    process.env.REACT_APP_FIREBASE_PROJECT_ID,
+
+  storageBucket:
+    process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+
+  messagingSenderId:
+    process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+
+  appId:
+    process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);

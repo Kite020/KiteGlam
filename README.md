@@ -122,55 +122,83 @@ src/
 └── index.js
 
 
-### 🚀 Getting Started
 
-## 1️⃣ Clone The Repository
+# ⚙️ Installation & Setup
 
-```
+## Clone Repository
+
+```bash
 git clone https://github.com/Kite020/KiteGlam.git
-cd KiteGlam
 ```
 
-## 2️⃣ Install Dependencies
+---
 
+## Navigate Into Project
+
+```bash
+cd KiteGlamApp
 ```
+
+---
+
+## Install Dependencies
+
+```bash
 npm install
 ```
 
-## 3️⃣ Start The Development Server
+---
 
-```
+## Start Development Server
+
+```bash
 npm start
 ```
 
-Visit: http://localhost:3000
+---
 
-## 🔐 Firebase Setup(Authentication)
+# 🔥 Firebase Setup
 
--Create a Firebase project at https://firebase.google.com
+Create a Firebase project and enable:
 
--Create a .env file in your project root with the following content:
+- Authentication
+- Firestore Database
+- Storage
 
+Then create:
+
+```bash
+src/components/Firebase.js
 ```
-REACT_APP_FIREBASE_API_KEY=your_api_key
-REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
-REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-REACT_APP_FIREBASE_APP_ID=your_app_id
-```
 
--Don't forget to add .env to your .gitignore file!
+and configure your Firebase credentials.
 
+---
 
+# 📌 Future Improvements
 
-### 👩‍💻 Author
+- Razorpay / Stripe Integration
+- AI-based Recommendations
+- Advanced Analytics
+- Email Notifications
+- Delivery Tracking
+- Coupons & Discounts
+- Multi-vendor Support
 
-Ankita Dash
+---
 
-### 📄 License
+# 👩‍💻 Author
 
-This project is licensed under the MIT License.
+### Ankita Dash
+
+Frontend & Full Stack Developer  
+Passionate about building scalable and modern web applications.
+
+---
+
+# ⭐ Acknowledgement
+
+This project was built as a portfolio-grade ecommerce platform to strengthen full-stack development skills using React and Firebase.
 
 
 

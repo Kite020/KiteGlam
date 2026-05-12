@@ -1,36 +1,128 @@
-# 💄 KiteGlam – Your Fashion & Beauty Destination
+# ✨ KiteGlam — Full Stack Ecommerce Web Application
 
-**KiteGlam** is a sleek, modern, and fully responsive fashion e-commerce web app built for **female users** to explore their personal style. Whether you're shopping for trendy outfits, luxury skincare, or glamorous styles, KiteGlam makes your fashion journey effortless and stylish.
+KiteGlam is a modern full-stack ecommerce web application built using React and Firebase.  
+The platform provides a complete online shopping experience with dynamic product management, authentication, inventory tracking, wishlist/cart functionality, analytics dashboard, and an admin management system.
 
----
-
-## ✨ Features
-
-- 🧍‍♀️ Browse through every fashion category you could think of
-- 💖 Add to Wishlist with heart toggle (`♡` → `❤`)
-- 🛒 Add to Cart with real-time updates and total calculation
-- 🔐 Firebase Authentication for secure login/signup
-- 📂 Filter products by category (Skincare, Makeup, etc.)
-- 💰 Sort products by price (Low → High / High → Low)
-- 📱 Fully responsive UI for all screen sizes
-- ✅ Shopping Cart with checkout confirmation
-- 🔄 Smooth page navigation using React Router
-- 🧠 Clean state management using React hooks
+The project was designed to simulate a real-world ecommerce platform with scalable architecture and responsive UI.
 
 ---
 
-## 🛠️ Tech Stack
+# 🚀 Features
 
-| Technology       | Description                       |
-|------------------|-----------------------------------|
-| **React**        | Frontend library for UI           |
-| **React Router** | Routing and page navigation       |
-| **React Bootstrap** | UI styling and components     |
-| **Firebase**     | Authentication (Login/Signup)     |
-| **CSS**          | Custom styling                    |
-| **Git + GitHub** | Version control & collaboration   |
+## 👤 User Features
 
---- 
+- User Authentication (Login / Signup / Logout)
+- Guest Access
+- Dynamic Product Listing from Firestore
+- Product Details Page
+- Wishlist Functionality
+- Shopping Cart
+- Quantity Management
+- Inventory-aware Cart System
+- Out-of-Stock Handling
+- Product Search
+- Product Reviews & Ratings
+- Related Product Recommendations
+- Responsive UI for Desktop & Mobile
+- Order Placement System
+- Order History
+
+---
+
+## 🛠️ Admin Features
+
+- Protected Admin Access
+- Admin Dashboard
+- Add Products Dynamically
+- Edit Existing Products
+- Delete Products
+- Manage Orders
+- Inventory / Stock Management
+- Automatic Stock Reduction After Purchase
+- Revenue Analytics
+- Units Sold Tracking
+- Inventory Analytics
+- Revenue vs Time Graph
+- Real-Time Firestore Integration
+
+---
+
+# 📊 Analytics Dashboard
+
+The admin dashboard includes:
+
+- Total Revenue
+- Total Orders
+- Total Inventory
+- Units Sold
+- Revenue Trend Visualization using Recharts
+
+---
+
+# 🧠 Advanced Functionalities
+
+## 🔥 Dynamic Firestore Architecture
+All products, reviews, and orders are fetched dynamically from Firebase Firestore.
+
+## 📦 Inventory System
+- Real-time stock tracking
+- Automatic stock updates after successful purchases
+- Add-to-cart disabled for out-of-stock items
+
+## ⭐ Review System
+Authenticated users can:
+- submit ratings,
+- write reviews,
+- view dynamic average ratings.
+
+## ❤️ Wishlist System
+Users can:
+- add/remove products,
+- navigate directly to product detail pages from wishlist.
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+- React.js
+- React Router DOM
+- Bootstrap
+- CSS3
+- React Icons
+- React Toastify
+- Recharts
+
+## Backend / Database
+- Firebase Authentication
+- Firebase Firestore
+- Firebase Storage
+
+---
+
+# 📁 Project Structure
+
+```bash
+src/
+│
+├── components/
+│   ├── AdminDashboard.js
+│   ├── Navbar.js
+│   ├── ProductDetailsPage.js
+│   ├── ShoppingCart.js
+│   ├── WishlistPage.js
+│   ├── CheckoutPage.js
+│   ├── ProfilePage.js
+│   ├── Firebase.js
+│   └── ...
+│
+├── data/
+│
+├── config/
+│   └── admin.js
+│
+├── App.js
+└── index.js
 
 ### 🚀 Getting Started
 
@@ -72,20 +164,6 @@ REACT_APP_FIREBASE_APP_ID=your_app_id
 
 -Don't forget to add .env to your .gitignore file!
 
-### 🧾 Project Structure
-
-```
-KiteGlam/
-├── public/
-├── src/
-│   ├── components/
-│   ├── img/
-│   ├── App.js
-│   └── index.js
-├── .gitignore
-├── package.json
-└── README.md
-```
 
 
 ### 👩‍💻 Author

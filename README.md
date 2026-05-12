@@ -184,6 +184,12 @@ and configure your Firebase credentials.
 
 ---
 
+# 📌 Future Improvements
+
+- Razorpay / Stripe Integration
+- Advanced Analytics
+- Multi-vendor Support
+
 # 👩‍💻 Author
 
 ### Ankita Dash

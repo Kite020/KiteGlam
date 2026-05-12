@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ShoppingCart.css';
-import { db, auth } from './Firebase';
-import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 
 

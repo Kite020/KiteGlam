@@ -174,17 +174,6 @@ src/components/Firebase.js
 
 and configure your Firebase credentials.
 
----
-
-# 📌 Future Improvements
-
-- Razorpay / Stripe Integration
-- AI-based Recommendations
-- Advanced Analytics
-- Email Notifications
-- Delivery Tracking
-- Coupons & Discounts
-- Multi-vendor Support
 
 ---
 

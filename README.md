@@ -42,7 +42,6 @@ The project was designed to simulate a real-world ecommerce platform with scalab
 - Revenue Analytics
 - Units Sold Tracking
 - Inventory Analytics
-- Revenue vs Time Graph
 - Real-Time Firestore Integration
 
 ---
@@ -55,7 +54,6 @@ The admin dashboard includes:
 - Total Orders
 - Total Inventory
 - Units Sold
-- Revenue Trend Visualization using Recharts
 
 ---
 
@@ -91,7 +89,6 @@ Users can:
 - CSS3
 - React Icons
 - React Toastify
-- Recharts
 
 ## Backend / Database
 - Firebase Authentication
@@ -123,6 +120,7 @@ src/
 │
 ├── App.js
 └── index.js
+
 
 ### 🚀 Getting Started
 

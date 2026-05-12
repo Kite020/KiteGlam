@@ -5,6 +5,7 @@ import { auth } from "./Firebase";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../img/kiteGlamLogo.png"; // Adjust the path as necessary
 import "./Login.css";
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      toast.success("✅ Logged in successfully!");
       navigate("/"); // Redirect to homepage
     } catch (err) {
       alert("Login failed: " + err.message);

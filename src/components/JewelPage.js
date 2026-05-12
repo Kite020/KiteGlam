@@ -1,31 +1,10 @@
 import React, { useState } from 'react';
 import './JewelPage.css';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import useProducts
+  from './useProducts';
 
-const products = [
-  { id: 21, name: 'Diamond Pendant with Gold Texture', price: '₹1899', image: require('../img/DiamondPendent1.png'), category: 'Pendants'},
-  { id: 22, name: 'Butterfly Designed Diamond Pendant', price: '₹1899', image: require('../img/DiamondButterflyPendent1.png'), category: 'Pendants'},
-  { id: 23, name: 'Butterfly Designed Gold-Diamond Pendant ', price: '₹1899', image: require('../img/DiamondButterflyPendant.png'), category: 'Pendants'},
-  { id: 24, name: 'Rose Gold PLated Floral Pendant', price: '₹1899', image: require('../img/RosegoldPendant.png'), category: 'Pendants'},
-  { id: 25, name: 'Pearl Ear Rings Pink Flower Design', price: '₹1999', image: require('../img/PearlEarrings1.png'), category: 'Ear Rings' },
-  { id: 26, name: 'Diamond Ear Rings with Gold Texture', price: '₹1999', image: require('../img/DiamondEarrings1.png'), category: 'Ear Rings' },
-  { id: 27, name: 'Butterfly Designed Diamond Ear Rings', price: '₹1999', image: require('../img/DiamondButterflyEarrings1.png'), category: 'Ear Rings' },
-  { id: 28, name: 'Rose Gold Floral Design Necklace', price: '₹2699', image: require('../img/RosegoldNecklace.png'), category: 'Necklaces' },
-  { id: 29, name: 'Gemstones Party Necklace', price: '₹2699', image: require('../img/GemstoneNecklace.png'), category: 'Necklaces' },
-  { id: 30, name: 'Silver Trilogy Love Ring', price: '₹2549', image: require('../img/SilverRing1.png'), category: 'Rings' },
-  { id: 31, name: 'Rose Gold Amethyst Ring', price: '₹2549', image: require('../img/RosegoldRing1.png'), category: 'Rings' },
-  { id: 32, name: '925 Sterling Silver Women Ring', price: '₹2549', image: require('../img/SilverRing2.png'), category: 'Rings' },
-  { id: 33, name: 'Silver Zircon Ferns Bracelet', price: '₹699', image: require('../img/SilverBracelet1.png'), category: 'Bracelets' },
-  { id: 34, name: 'Silver Infinity Love Bracelet', price: '₹699', image: require('../img/SilverBracelet2.png'), category: 'Bracelets' },
-  { id: 35, name: 'Rose Gold Magnolia Flower Bracelet', price: '₹699', image: require('../img/RosegoldBracelet1.png'), category: 'Bracelets' },
-  { id: 36, name: 'Twisted Infinity Diamond Bracelet', price: '₹699', image: require('../img/DiamondBracelet1.png'), category: 'Bracelets' },
-  { id: 37, name: 'Trio Petals Nose Pin', price: '₹699', image: require('../img/GoldNosering1.png'), category: 'Nose Rings' },
-  { id: 38, name: 'Silver Pink Gemstone Bangles', price: '₹699', image: require('../img/SilverBangles.png'), category: 'Bangles' },
-  { id: 39, name: 'Pearl Green Gemstone Bangles', price: '₹699', image: require('../img/PearlBangles.png'), category: 'Bangles' },
-  { id: 40, name: 'Silver Butterfly Anklets', price: '₹699', image: require('../img/SilverAnklets.png'), category: 'Anklets' },
-  { id: 41, name: 'Gold Love Anklets', price: '₹699', image: require('../img/GoldAnklets.png'), category: 'Anklets' },
-
-
-];
 // Helper to convert ₹ string to number
 const extractPrice = (priceStr) => parseInt(priceStr.replace(/[₹,]/g, ''));
 
@@ -39,23 +18,45 @@ const JewelPage = ({ wishlist, setWishlist, cart, setCart}) => {
     const isWished = wishlist.some((item) => item.id === product.id);
     if (isWished) {
       setWishlist(wishlist.filter((item) => item.id !== product.id));
+      toast.info("❤️ removed from wishlist!");
     } else {
       setWishlist([...wishlist, product]);
+      toast.success("❤️ Added to wishlist!");
     }
   };
+  
 
   // Toggle cart state
   const handleAddToCart = (product) => {
     const alreadyInCart = cart.some((item) => item.id === product.id);
     if (!alreadyInCart) {
-      setCart([...cart, product]);
+      setCart([
+        ...cart,
+        {
+          ...product,
+          quantity: 1
+        }
+      ]);
+      toast.success("🛒 Added to cart!");
     }
   };
+  const navigate = useNavigate();
+  const firebaseProducts =
+    useProducts();
 
   // Filter products based on selected category
-  const filteredProducts = selectedCategory === 'All'
-    ? products
-    : products.filter(product => product.category === selectedCategory);
+  const womenProducts =
+    firebaseProducts.filter(
+      product => product.page === 'Jewels'
+    );
+
+  const filteredProducts =
+    selectedCategory === 'All'
+      ? womenProducts
+      : womenProducts.filter(
+          product =>
+            product.category === selectedCategory
+        );
 
   // Sort products based on selected option
   const sortedProducts = [...filteredProducts].sort((a, b) => {
@@ -115,7 +116,16 @@ const JewelPage = ({ wishlist, setWishlist, cart, setCart}) => {
           const isWished = wishlist.some((item) => item.id === product.id);
           return (
             <div className="product-card" key={product.id} style={{ height: '400px' }}>
-              <img src={product.image} alt={product.name} />
+              <img
+                src={product.image}
+                alt={product.name}
+                onClick={() =>
+                  navigate(`/product/${product.id}`, {
+                    state: { product }
+                  })
+                }
+                style={{ cursor: 'pointer' }}
+              />
               <h5>{product.name}</h5>
               <p>{product.price}</p>
               <span

@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import './WomenPage.css';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import useProducts
+  from './useProducts';
 
-const products = [
-  { id: 101, name: 'Puma Women Black Fluido Sneakers', price: '₹1899', image: require('../img/PumaSneakers1.png'), category: 'Sneakers' },
-  { id: 102, name: 'Puma Women White Astralis Sneakers', price: '₹1899', image: require('../img/PumaSneakers2.png'), category: 'Sneakers' },
-  { id: 103, name: 'Ginger White Platform Sandals ', price: '₹1999', image: require('../img/Sandals1.png'), category: 'Sandals' },
-  { id: 104, name: 'Mosac Stylish Wedge Sandals ', price: '₹1999', image: require('../img/Sandals2.png'), category: 'Sandals' },
-  { id: 105, name: 'Gokik Customized Peach Clogs', price: '₹2699', image: require('../img/Crocs1.png'), category: 'Crocs' },
-  { id: 106, name: 'Women Self Design Purple Crocs', price: '₹2699', image: require('../img/Crocs2.png'), category: 'Crocs' },
-  { id: 107, name: 'Marc Loire Women Black Block Heels', price: '₹2549', image: require('../img/Heels1.png'), category: 'Heels' },
-  { id: 108, name: 'Elle Women White Heels', price: '₹2549', image: require('../img/Heels2.png'), category: 'Heels' },
-  { id: 109, name: 'SSS Black Long Boots', price: '₹699', image: require('../img/Boots1.png'), category: 'Boots' },
-  { id: 110, name: 'Ginger Women Matte Black Boots', price: '₹699', image: require('../img/Boots2.png'), category: 'Boots' },
-  { id: 111, name: 'IYKYK Black Pointed Toe Flats', price: '₹699', image: require('../img/Flats1.png'), category: 'Flats' },
-  { id: 112, name: 'Tryfeet Floral Printed Flats', price: '₹699', image: require('../img/Flats2.png'), category: 'Flats' },
-  { id: 113, name: 'Yoho Pink Flip-Flops', price: '₹699', image: require('../img/Slippers1.png'), category: 'Slippers' },
-  { id: 114, name: 'Cute Ribboned Black Slippers  ', price: '₹699', image: require('../img/Slippers2.png'), category: 'Slippers' },
-];
 // Helper to convert ₹ string to number
 const extractPrice = (priceStr) => parseInt(priceStr.replace(/[₹,]/g, ''));
 
@@ -30,23 +18,45 @@ const WomenPage = ({ wishlist, setWishlist, cart, setCart}) => {
     const isWished = wishlist.some((item) => item.id === product.id);
     if (isWished) {
       setWishlist(wishlist.filter((item) => item.id !== product.id));
+      toast.info("❤️ removed from wishlist!");
     } else {
       setWishlist([...wishlist, product]);
+      toast.success("❤️ Added to wishlist!");
     }
   };
+  
+  const navigate = useNavigate();
+  const firebaseProducts =
+    useProducts();
 
   // Toggle cart state
   const handleAddToCart = (product) => {
     const alreadyInCart = cart.some((item) => item.id === product.id);
     if (!alreadyInCart) {
-      setCart([...cart, product]);
+      setCart([
+        ...cart,
+        {
+          ...product,
+          quantity: 1
+        }
+      ]);
+      toast.success("🛒 Added to cart!");
     }
   };
 
   // Filter products based on selected category
-  const filteredProducts = selectedCategory === 'All'
-    ? products
-    : products.filter(product => product.category === selectedCategory);
+  const womenProducts =
+    firebaseProducts.filter(
+      product => product.page === 'Footwears'
+    );
+
+  const filteredProducts =
+    selectedCategory === 'All'
+      ? womenProducts
+      : womenProducts.filter(
+          product =>
+            product.category === selectedCategory
+        );
 
   // Sort products based on selected option
   const sortedProducts = [...filteredProducts].sort((a, b) => {
@@ -106,7 +116,16 @@ const WomenPage = ({ wishlist, setWishlist, cart, setCart}) => {
           const isWished = wishlist.some((item) => item.id === product.id);
           return (
             <div className="product-card" key={product.id} style={{ height: '400px' }}>
-              <img src={product.image} alt={product.name} />
+              <img
+                src={product.image}
+                alt={product.name}
+                onClick={() =>
+                  navigate(`/product/${product.id}`, {
+                    state: { product }
+                  })
+                }
+                style={{ cursor: 'pointer' }}
+              />
               <h5>{product.name}</h5>
               <p>{product.price}</p>
               <span

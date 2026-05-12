@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './components/Firebase';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 import LoginPage from './components/LoginPage';
@@ -20,14 +22,44 @@ import ShoppingCart from './components/ShoppingCart';
 import NavbarComponent from './components/Navbar';
 import ProfilePage from './components/ProfilePage';
 import EditProfilePage from './components/EditProfilePage'; // Import the new EditProfilePage component
+import ProductDetailsPage from './components/ProductDetailsPage';
+import CheckoutPage from './components/CheckoutPage';
+import AdminDashboard from './components/AdminDashboard';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [user, setUser] = useState(null);
   const [authChecked, setAuthChecked] = useState(false);
-  const [wishlist, setWishlist] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = React.useState(() => {
+    const savedWishlist = localStorage.getItem('wishlist');
+  
+    return savedWishlist
+      ? JSON.parse(savedWishlist)
+      : [];
+  });
+  
+  const [cart, setCart] = React.useState(() => {
+    const savedCart = localStorage.getItem('cart');
+  
+    return savedCart
+      ? JSON.parse(savedCart)
+      : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      'wishlist',
+      JSON.stringify(wishlist)
+    );
+  }, [wishlist]);
+  
+  useEffect(() => {
+    localStorage.setItem(
+      'cart',
+      JSON.stringify(cart)
+    );
+  }, [cart]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -73,13 +105,45 @@ function App() {
             <Route path="watch" element={<WatchPage wishlist={wishlist} setWishlist={setWishlist} cart={cart} setCart={setCart} />} />
             <Route path="bag" element={<BagPage wishlist={wishlist} setWishlist={setWishlist} cart={cart} setCart={setCart} />} />
             <Route path="accessories" element={<AccessoriesPage wishlist={wishlist} setWishlist={setWishlist} cart={cart} setCart={setCart} />} />
-            <Route path="cart" element={<ShoppingCart cart={cart} setCart={setCart} />} />
+            <Route path="cart" element={<ShoppingCart cart={cart} setCart={setCart} wishlist={wishlist} setWishlist={setWishlist} />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="edit-profile" element={<EditProfilePage />} /> {/* New Edit Profile Route */}
+            <Route
+              path="product/:id"
+              element={
+                <ProductDetailsPage
+                  cart={cart}
+                  setCart={setCart}
+                  wishlist={wishlist}
+                  setWishlist={setWishlist}
+                />
+              }
+            />
+            <Route
+              path="checkout"
+              element={
+                <CheckoutPage
+                  cart={cart}
+                  setCart={setCart}
+                />
+              }
+            />
+            <Route
+              path="admin"
+              element={<AdminDashboard />}
+            />
           </Route>
 
         </Routes>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+      />
     </Router>
   );
 }

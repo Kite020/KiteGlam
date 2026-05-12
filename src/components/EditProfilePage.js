@@ -3,6 +3,7 @@ import { auth } from './Firebase';
 import { updateProfile, updateEmail, updatePassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import './EditProfilePage.css'; // Optional styling
+import { toast } from 'react-toastify';
 
 const EditProfilePage = () => {
   const user = auth.currentUser;
@@ -11,30 +12,35 @@ const EditProfilePage = () => {
   const [displayName, setDisplayName] = useState(user?.displayName || '');
   const [email, setEmail] = useState(user?.email || '');
   const [password, setPassword] = useState('');
-  const [successMsg, setSuccessMsg] = useState(false);
 
   const handleSaveChanges = async () => {
     try {
+  
       if (displayName !== user.displayName) {
         await updateProfile(user, { displayName });
       }
-
+  
       if (email !== user.email) {
         await updateEmail(user, email);
       }
-
+  
       if (password.trim()) {
         await updatePassword(user, password);
       }
-
-      setSuccessMsg(true);
+  
+      // ✅ Success toast
+      toast.success("✅ Profile updated successfully!");
+  
+      // ✅ Navigate after 2 sec
       setTimeout(() => {
-        setSuccessMsg(false);
-        navigate('/profile'); // back to profile
+        navigate('/profile');
       }, 2000);
+  
     } catch (error) {
       console.error('Error updating profile:', error);
-      alert('Failed to update profile. Try again.');
+  
+      // ❌ Error toast
+      toast.error("❌ Failed to update profile.");
     }
   };
 
@@ -51,8 +57,7 @@ const EditProfilePage = () => {
       <input value={password} type="password" onChange={(e) => setPassword(e.target.value)} />
 
       <button onClick={handleSaveChanges}>Save Changes</button>
-      
-      {successMsg && <p className="success-msg">✅ Profile updated successfully!</p>}
+    
     </div>
   );
 };

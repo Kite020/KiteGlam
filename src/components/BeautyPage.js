@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import './BeautyPage.css';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import useProducts
+  from './useProducts';
 
-const products = [
-  {id: 1, name: 'Derma Co Skincare Combo', price: '₹1899', image: require('../img/derma.png'), category: 'Skincare'},
-  {id: 2, name: 'Rare Beauty Blush', price: '₹1999', image: require('../img/blush.png'), category: 'Makeup'},
-  {id: 3, name: 'Wearified Makeup Brushes', price: '₹2699', image: require('../img/brushes.png'), category: 'Brushes'},
-  {id: 4, name: 'Kimirica Skincare Combo', price: '₹2549', image: require('../img/kimirica.png'), category: 'Skincare'},
-  {id: 5, name: 'Elf Primer', price: '₹699', image: require('../img/primer.png'), category: 'Makeup'},
-];
+
 
 // Helper to convert ₹ string to number
 const extractPrice = (priceStr) => parseInt(priceStr.replace(/[₹,]/g, ''));
@@ -21,31 +19,67 @@ const BeautyPage = ({ wishlist, setWishlist, cart, setCart }) => {
     const isWished = wishlist.some((item) => item.id === product.id);
     if (isWished) {
       setWishlist(wishlist.filter((item) => item.id !== product.id));
+      toast.info("❤️ removed from wishlist!");
     } else {
       setWishlist([...wishlist, product]);
+      toast.success("❤️ Added to wishlist!");
     }
   };
+  
+
+  const navigate = useNavigate();
+  const firebaseProducts =
+    useProducts();
+
   // Toggle cart state
   const handleAddToCart = (product) => {
     const alreadyInCart = cart.some((item) => item.id === product.id);
     if (!alreadyInCart) {
-      setCart([...cart, product]);
+      setCart([
+        ...cart,
+        {
+          ...product,
+          quantity: 1
+        }
+      ]);
+      toast.success("🛒 Added to cart!");
     }
   };
 
   // Filter based on category
+  const womenProducts =
+    firebaseProducts.filter(
+      product => product.page === 'Beauty'
+    );
+
   const filteredProducts =
     selectedCategory === 'All'
-      ? products
-      : products.filter((product) => product.category === selectedCategory);
+      ? womenProducts
+      : womenProducts.filter(
+          product =>
+            product.category === selectedCategory
+        );
 
   // Sort based on price
   const sortedProducts = [...filteredProducts].sort((a, b) => {
+
     if (sortOption === 'Price: Low to High') {
-      return extractPrice(a.price) - extractPrice(b.price);
-    } else if (sortOption === 'Price: High to Low') {
-      return extractPrice(b.price) - extractPrice(a.price);
+
+      return (
+        extractPrice(a.price) -
+        extractPrice(b.price)
+      );
+
+    } else if (
+      sortOption === 'Price: High to Low'
+    ) {
+
+      return (
+        extractPrice(b.price) -
+        extractPrice(a.price)
+      );
     }
+
     return 0;
   });
 
@@ -93,7 +127,16 @@ const BeautyPage = ({ wishlist, setWishlist, cart, setCart }) => {
           const isWished = wishlist.some((item) => item.id === product.id);
           return (
             <div className="product-card" key={product.id} style={{ height: '400px' }}>
-              <img src={product.image} alt={product.name} />
+              <img
+                src={product.image}
+                alt={product.name}
+                onClick={() =>
+                  navigate(`/product/${product.id}`, {
+                    state: { product }
+                  })
+                }
+                style={{ cursor: 'pointer' }}
+              />
               <h5>{product.name}</h5>
               <p>{product.price}</p>
               <span

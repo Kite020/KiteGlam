@@ -1,30 +1,12 @@
 import React, { useState } from 'react';
 import './AccessoriesPage.css';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import useProducts
+  from './useProducts';
 
-const products = [
-  { id: 181, name: 'H&M Ladies Wide-brim Straw Hat ', price: '₹2999', image: require('../img/Hat1.png'), category: 'Hats' },
-  { id: 182, name: 'H&M Ladies Purple Floral Hat ', price: '₹599', image: require('../img/Hat2.png'), category: 'Hats' },
-  { id: 183, name: 'AXTITUDE Women Winter French Ski Cap', price: '₹599', image: require('../img/Hat3.png'), category: 'Hats' },
-  { id: 184, name: 'H&M Ladies Black Belt', price: '₹799', image: require('../img/Belt1.png'), category: 'Belts' },
-  { id: 185, name: 'H&M Ladies Belt, Set of 3', price: '₹999', image: require('../img/Belt2.png'), category: 'Belts' },
-  { id: 186, name: 'CHANEL COCO MADEMOISELLE Women Perfume', price: '₹12350', image: require('../img/Perfume1.png'), category: 'Perfumes' },
-  { id: 187, name: 'YSL Mon Paris Women Perfume', price: '₹550', image: require('../img/Perfume2.png'), category: 'Perfumes' },
-  { id: 188, name: 'Cherry Wine Women Perfume', price: '₹899', image: require('../img/Perfume3.png'), category: 'Perfumes' },
-  { id: 189, name: 'Ladies Brown Pattern Sunglasses', price: '₹699', image: require('../img/Sunglass1.png'), category: 'Sunglasses' },
-  { id: 190, name: 'Multicolor Satin Scrunchies', price: '₹86', image: require('../img/Scrunchy1.png'), category: 'Scrunchies' },
-  { id: 191, name: 'Classic Satin Silk Scrunchies', price: '₹199', image: require('../img/Scrunchy2.png'), category: 'Scrunchies' },
-  { id: 192, name: 'Anna Creations Korean Clips', price: '₹183', image: require('../img/Clip1.png'), category: 'Hair Clips' },
-  { id: 193, name: 'Anna Creations Korean Flower Lock Pins', price: '₹173', image: require('../img/Clip2.png'), category: 'Hair Clips' },
-  { id: 194, name: 'Pink Knotted Headband', price: '₹799', image: require('../img/Band1.png'), category: 'Headbands' },
-  { id: 195, name: 'Long Pearl Flower Hair Ribbons', price: '₹238', image: require('../img/Band2.png'), category: 'Headbands' },
-  { id: 196, name: 'Bakefy 6 Pcs Frosted Hair Claw Set', price: '₹299', image: require('../img/Clutcher1.png'), category: 'Clutchers' },
-  { id: 197, name: '7-pack trainer socks for Women', price: '₹699', image: require('../img/Sock1.png'), category: 'Socks' },
-  { id: 198, name: 'Women Flower Printed Microfiber Handkerchief', price: '₹215', image: require('../img/Hanky1.png'), category: 'Hankies' },
-];
 // Helper to convert ₹ string to number
 const extractPrice = (priceStr) => parseInt(priceStr.replace(/[₹,]/g, ''));
-
-
 
 const AccessPage = ({ wishlist, setWishlist, cart, setCart}) => {
   const[selectedCategory, setSelectedCategory] = useState('All');
@@ -34,23 +16,44 @@ const AccessPage = ({ wishlist, setWishlist, cart, setCart}) => {
     const isWished = wishlist.some((item) => item.id === product.id);
     if (isWished) {
       setWishlist(wishlist.filter((item) => item.id !== product.id));
+      toast.info("❤️ removed from wishlist!");
     } else {
       setWishlist([...wishlist, product]);
+      toast.success("❤️ Added to wishlist!");
     }
   };
+  const navigate = useNavigate();
+  const firebaseProducts =
+    useProducts();
 
   // Toggle cart state
   const handleAddToCart = (product) => {
     const alreadyInCart = cart.some((item) => item.id === product.id);
     if (!alreadyInCart) {
-      setCart([...cart, product]);
+      setCart([
+  ...cart,
+  {
+    ...product,
+    quantity: 1
+  }
+]);
+      toast.success("🛒 Added to cart!");
     }
   };
 
   // Filter products based on selected category
-  const filteredProducts = selectedCategory === 'All'
-    ? products
-    : products.filter(product => product.category === selectedCategory);
+  const womenProducts =
+    firebaseProducts.filter(
+      product => product.page === 'Accessories'
+    );
+
+  const filteredProducts =
+    selectedCategory === 'All'
+      ? womenProducts
+      : womenProducts.filter(
+          product =>
+            product.category === selectedCategory
+        );
 
   // Sort products based on selected option
   const sortedProducts = [...filteredProducts].sort((a, b) => {
@@ -110,7 +113,16 @@ const AccessPage = ({ wishlist, setWishlist, cart, setCart}) => {
           const isWished = wishlist.some((item) => item.id === product.id);
           return (
             <div className="product-card" key={product.id} style={{ height: '400px' }}>
-              <img src={product.image} alt={product.name} />
+              <img
+                src={product.image}
+                alt={product.name}
+                onClick={() =>
+                  navigate(`/product/${product.id}`, {
+                    state: { product }
+                  })
+                }
+                style={{ cursor: 'pointer' }}
+              />
               <h5>{product.name}</h5>
               <p>{product.price}</p>
               <span

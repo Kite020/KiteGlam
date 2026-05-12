@@ -2,15 +2,74 @@
     color: #333 !important;
     text-decoration: none;
     transition: color 0.2s ease-in-out;
+    margin: 0 8px;
+    font-size: 1rem;
 }
 
 .nav-link-custom:hover {
     color: #dc3545 !important;
-    /* red on hover */
 }
 
 .nav-link-custom.active {
     color: #dc3545 !important;
-    /* red when active */
     font-weight: 600;
+}
+
+/* ✅ Tablet screens */
+@media (max-width: 992px) {
+    .nav-link-custom {
+        margin: 5px 0;
+        font-size: 0.95rem;
+    }
+}
+
+/* ✅ Mobile screens */
+@media (max-width: 768px) {
+    .nav-link-custom {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 1rem;
+    }
+}
+
+/* ✅ Small phones */
+@media (max-width: 480px) {
+    .nav-link-custom {
+        font-size: 0.9rem;
+        padding: 8px 0;
+    }
+}
+.search-bar-container {
+    position: relative;
+    width: 170px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search-results {
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.search-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.search-item:hover {
+    background: #ffeef5;
 }

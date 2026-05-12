@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
 import './BagPage.css';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import useProducts
+  from './useProducts';
 
-const products = [
-  { id: 161, name: 'H&M Ladies Beige Tote Bag', price: '₹1399', image: require('../img/Tote1.png'), category: 'Tote Bags' },
-  { id: 162, name: 'Vah Heusen Oversized Shoulder Bag', price: '₹1497', image: require('../img/Tote2.png'), category: 'Tote Bags' },
-  { id: 163, name: 'MICHAEL KORS Zip-Around Wristlet', price: '₹10500', image: require('../img/Clutch1.png'), category: 'Clutches' },
-  { id: 164, name: 'JIMMY CHOO Xandra Latte Clutch Bag', price: '₹91000', image: require('../img/Clutch2.png'), category: 'Clutches' },
-  { id: 165, name: 'Women Pleatz25 frame clutch', price: '₹2100', image: require('../img/Clutch3.png'), category: 'Clutches' },
-  { id: 166, name: 'Storite Printed Foldable Duffel Bag', price: '₹999', image: require('../img/Duffel1.png'), category: 'Duffel Bags' },
-  { id: 167, name: 'Bella Crossbody Bag', price: '₹2449', image: require('../img/Hand1.png'), category: 'Hand Bags' },
-  { id: 168, name: 'EXOTIC Studded Pink Hand Bag', price: '₹1249', image: require('../img/Hand2.png'), category: 'Hand Bags' },
-  { id: 169, name: 'Allen Solly Women Sling Red Purse', price: '₹699', image: require('../img/Purse1.png'), category: 'Purses' },
-  { id: 170, name: 'EXOTIC Studded Green Hand Bag', price: '₹699', image: require('../img/Purse2.png'), category: 'Purses' },
-  { id: 171, name: 'Adidas Unisex Purple Backpack', price: '₹1697', image: require('../img/Backpack1.png'), category: 'Backpacks' },
-  { id: 172, name: 'Savana White Floral Bag', price: '₹693', image: require('../img/Backpack2.png'), category: 'Backpacks' },
-];
+
 // Helper to convert ₹ string to number
 const extractPrice = (priceStr) => parseInt(priceStr.replace(/[₹,]/g, ''));
 
@@ -28,23 +19,45 @@ const BagPage = ({ wishlist, setWishlist, cart, setCart}) => {
     const isWished = wishlist.some((item) => item.id === product.id);
     if (isWished) {
       setWishlist(wishlist.filter((item) => item.id !== product.id));
+      toast.info("❤️ removed from wishlist!");
     } else {
       setWishlist([...wishlist, product]);
+      toast.success("❤️ Added to wishlist!");
     }
   };
+  
+  const navigate = useNavigate();
+  const firebaseProducts =
+    useProducts();
 
   // Toggle cart state
   const handleAddToCart = (product) => {
     const alreadyInCart = cart.some((item) => item.id === product.id);
     if (!alreadyInCart) {
-      setCart([...cart, product]);
+      setCart([
+        ...cart,
+        {
+          ...product,
+          quantity: 1
+        }
+      ]);
+      toast.success("🛒 Added to cart!");
     }
   };
 
   // Filter products based on selected category
-  const filteredProducts = selectedCategory === 'All'
-    ? products
-    : products.filter(product => product.category === selectedCategory);
+  const womenProducts =
+    firebaseProducts.filter(
+      product => product.page === 'Bag'
+    );
+
+  const filteredProducts =
+    selectedCategory === 'All'
+      ? womenProducts
+      : womenProducts.filter(
+          product =>
+            product.category === selectedCategory
+        );
 
   // Sort products based on selected option
   const sortedProducts = [...filteredProducts].sort((a, b) => {
@@ -104,7 +117,16 @@ const BagPage = ({ wishlist, setWishlist, cart, setCart}) => {
           const isWished = wishlist.some((item) => item.id === product.id);
           return (
             <div className="product-card" key={product.id} style={{ height: '400px' }}>
-              <img src={product.image} alt={product.name} />
+              <img
+                src={product.image}
+                alt={product.name}
+                onClick={() =>
+                  navigate(`/product/${product.id}`, {
+                    state: { product }
+                  })
+                }
+                style={{ cursor: 'pointer' }}
+              />
               <h5>{product.name}</h5>
               <p>{product.price}</p>
               <span

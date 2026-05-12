@@ -1,0 +1,74 @@
+.checkout-page {
+    min-height: 100vh;
+    background: #fff5f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.checkout-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-card textarea,
+.checkout-card select {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.checkout-summary {
+    margin-top: 2rem;
+}
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.place-order-btn {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 30px;
+    background: #ff4e9b;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.coupon-section {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.coupon-section input {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.coupon-section button {
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    background: #ff4e9b;
+    color: white;
+    cursor: pointer;
+}
+
+.discount-info {
+    margin-top: 15px;
+}

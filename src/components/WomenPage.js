@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
 import './WomenPage.css';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import useProducts
+  from './useProducts';
 
-const products = [
-  { id: 61, name: 'Berryblush Women White Maxi-Dress', price: '₹1899', image: require('../img/BerryblushWomenWhiteMaxidress.png'), category: 'Maxi-Dress' },
-  { id: 62, name: 'RSVP Women Black Midi-Dress', price: '₹1999', image: require('../img/RSVPWomenBlackMididress.png'), category: 'Midi-Dress' },
-  { id: 63, name: 'Tivante Women Black Mini-Dress', price: '₹2699', image: require('../img/TivanteWomenBlackMinidress.png'), category: 'Mini-Dress' },
-  { id: 64, name: 'Tokyo Talkies Women Designer Co-ords Set', price: '₹2549', image: require('../img/TokyoWomenDesignerCoord.png'), category: 'Co-ords' },
-  { id: 65, name: 'Magenta Women Ethnic Dress', price: '₹699', image: require('../img/MagentaWomenEthnicdress.png'), category: 'Ethnic-Dress' },
-  { id: 66, name: 'Rain&Rainbow Women Printed Kurti', price: '₹699', image: require('../img/RainWomenPrintedKurti.png'), category: 'Kurtis' },
-  { id: 67, name: 'Corsica Women Maroon Top', price: '₹699', image: require('../img/CorsicaWomenMaroonTops.png'), category: 'Tops' },
-  { id: 68, name: 'Kraus Women Brown Highrise Pants', price: '₹699', image: require('../img/KrausWomenBrownHighrisePant.png'), category: 'Pants' },
-  { id: 69, name: 'Yashika Women Designer Pink Saree', price: '₹699', image: require('../img/YashikaWomenSaree.png'), category: 'Saree' },
-
-
-
-];
 // Helper to convert ₹ string to number
 const extractPrice = (priceStr) => parseInt(priceStr.replace(/[₹,]/g, ''));
 
@@ -28,24 +18,45 @@ const WomenPage = ({ wishlist, setWishlist, cart, setCart}) => {
     const isWished = wishlist.some((item) => item.id === product.id);
     if (isWished) {
       setWishlist(wishlist.filter((item) => item.id !== product.id));
+      toast.info("❤️ removed from wishlist!");
     } else {
       setWishlist([...wishlist, product]);
+      toast.success("❤️ Added to wishlist!");
     }
   };
+  
 
   // Toggle cart state
   const handleAddToCart = (product) => {
     const alreadyInCart = cart.some((item) => item.id === product.id);
     if (!alreadyInCart) {
-      setCart([...cart, product]);
+      setCart([
+        ...cart,
+        {
+          ...product,
+          quantity: 1
+        }
+      ]);
+      toast.success("🛒 Added to cart!");
     }
   };
+  const navigate = useNavigate();
+  const firebaseProducts =
+    useProducts();
 
   // Filter products based on selected category
-  const filteredProducts = selectedCategory === 'All'
-    ? products
-    : products.filter(product => product.category === selectedCategory);
+  const womenProducts =
+    firebaseProducts.filter(
+      product => product.page === 'Women'
+    );
 
+  const filteredProducts =
+    selectedCategory === 'All'
+      ? womenProducts
+      : womenProducts.filter(
+          product =>
+            product.category === selectedCategory
+        );
   // Sort products based on selected option
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortOption === 'Price: Low to High') {
@@ -103,7 +114,16 @@ const WomenPage = ({ wishlist, setWishlist, cart, setCart}) => {
           const isWished = wishlist.some((item) => item.id === product.id);
           return (
             <div className="product-card" key={product.id} style={{ height: '400px' }}>
-              <img src={product.image} alt={product.name} />
+              <img
+                src={product.image}
+                alt={product.name}
+                onClick={() =>
+                  navigate(`/product/${product.id}`, {
+                    state: { product }
+                  })
+                }
+                style={{ cursor: 'pointer' }}
+              />
               <h5>{product.name}</h5>
               <p>{product.price}</p>
               <span

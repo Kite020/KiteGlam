@@ -110,45 +110,6 @@ const ShoppingCart = ({ cart, setCart, wishlist, setWishlist }) => {
     );
   };
 
-  const handlePurchase = async () => {
-    try {
-      // ✅ Check if user is logged in
-      if (!auth.currentUser) {
-        alert("Please login first.");
-        return;
-      }
-  
-      // ✅ Check if cart is empty
-      if (cart.length === 0) {
-        alert("Your cart is empty.");
-        return;
-      }
-  
-      // ✅ Save order to Firestore
-      await addDoc(collection(db, 'orders'), {
-        userId: auth.currentUser.uid,
-        items: cart.map(item => ({
-          id: item.id,
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity
-        })),
-        createdAt: Timestamp.now()
-      });
-  
-      // ✅ Success message
-      toast.success('🎉 Purchase made successfully!');
-
-      setTimeout(() => {
-        setCart([]);
-      }, 2000);
-  
-    } catch (error) {
-      console.error("PURCHASE ERROR:", error);
-      alert("Purchase failed.");
-    }
-  };
-
   return (
     <div className="shopping-cart">
       <div className="shopping-hero">
